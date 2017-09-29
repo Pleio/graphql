@@ -8,7 +8,7 @@
     <repository>https://github.com/Pleio/graphql</repository>
     <bugtracker>https://github.com/Pleio/graphql/issues</bugtracker>
     <copyright>(C) Stichting Pleio</copyright>
-    <license>GNU General Public License version 2</license>
+    <license>EUPL-1.1</license>
     <requires>
         <type>elgg_release</type>
         <version>1.8.20</version>

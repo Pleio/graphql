@@ -1,12 +1,21 @@
 <?php
 use Youshido\GraphQL\Execution\Processor;
 use Youshido\GraphQL\Schema\Schema;
+use GraphQL\Types;
 use GraphQL\Query;
 use GraphQL\Mutation;
 
 $schema = new Schema([
 	'query' => new Query(),
-	'mutation' => new Mutation()
+	'mutation' => new Mutation(),
+    'types' => [
+        new Types\User(),
+        new Types\Group(),
+        new Types\Blog(),
+        new Types\News(),
+        new Types\Discussion(),
+        new Types\Event()
+    ]
 ]);
 
 $processor = new Processor($schema);

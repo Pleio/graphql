@@ -13,81 +13,82 @@ class Query extends AbstractObjectType {
 
     public function build($config) {
         $config->addField('site', [
-                    'type' => new Types\Site(),
-                    'resolve' => function() {
-                        return DataProvider::getSite();
-                    }
-                ])
-                ->addField('viewer', [
-                    'type' => new Types\Viewer(),
-                    'resolve' => function() {
-                        return DataProvider::getViewer();
-                    }
-                ])
-                ->addField('activities', [
-                    'type' => new Types\ActivityList(),
-                    'args' => [
-                        'groupGuid' => new IdType(),
-                        'offset' => new IntType(),
-                        'limit' => new IntType()
-                    ],
-                    'resolve' => function() {
-                        return DataProvider::getActivityList();
-                    }
-                ])
-                ->addField('bookmarks', [
-                    'type' => new Types\EntityList(),
-                    'args' => [
-                        'offset' => new IntType(),
-                        'limit' => new IntType()
-                    ],
-                    'resolve' => function() {
-                        return DataProvider::getBookmarkList();
-                    }
-                ])
-                ->addField('entity', [
-                    'type' => new Types\Entity(),
-                    'args' => [
-                        'guid' => new IdType()
-                    ],
-                    'resolve' => function() {
-                        return DataProvider::getEntity();
-                    }
-                ])
-                ->addField('entities', [
-                    'type' => new Types\EntityList(),
-                    'args' => [
-                        'groupGuid' => new IdType(),
-                        'entityType' => new Types\EntityEnum(),
-                        'offset' => new IntType(),
-                        'limit' => new IntType()
-                    ],
-                    'resolve' => function() {
-                        return DataProvider::getEntityList();
-                    }
-                ])
-                ->addField('groups', [
-                    'type' => new Types\EntityList(),
-                    'args' => [
-                        'filter' => new Types\GroupFilterEnum(),
-                        'offset' => new IntType(),
-                        'limit' => new IntType()
-                    ],
-                    'resolve' => function() {
-                        return DataProvider::getGroupList();
-                    }
-                ])
-                ->addField('search', [
-                    'type' => new Types\EntityList(),
-                    'args' => [
-                        'q' => new StringType(),
-                        'entityType' => new Types\EntityEnum(),
-                        'offset' => new IntType(),
-                        'limit' => new IntType()
-                    ],
-                    'resolve' => function() {
-                        return DataProvider::getSearchList();
-                    }
-                ]);
-}
+            'type' => new Types\Site(),
+            'resolve' => function() {
+                return DataProvider::getSite();
+            }
+        ])
+        ->addField('viewer', [
+            'type' => new Types\Viewer(),
+            'resolve' => function() {
+                return DataProvider::getViewer();
+            }
+        ])
+        ->addField('activities', [
+            'type' => new Types\ActivityList(),
+            'args' => [
+                'groupGuid' => new IdType(),
+                'offset' => new IntType(),
+                'limit' => new IntType()
+            ],
+            'resolve' => function($source, $args, $resolveInfo) {
+                return DataProvider::getActivityList($source, $args);
+            }
+        ])
+        ->addField('bookmarks', [
+            'type' => new Types\EntityList(),
+            'args' => [
+                'offset' => new IntType(),
+                'limit' => new IntType()
+            ],
+            'resolve' => function($source, $args, $resolveInfo) {
+                return DataProvider::getBookmarkList($source, $args);
+            }
+        ])
+        ->addField('entity', [
+            'type' => new Types\Entity(),
+            'args' => [
+                'guid' => new IdType()
+            ],
+            'resolve' => function($source, $args, $resolveInfo) {
+                return DataProvider::getEntity($source, $args);
+            }
+        ])
+        ->addField('entities', [
+            'type' => new Types\EntityList(),
+            'args' => [
+                'groupGuid' => new IdType(),
+                'entityType' => new Types\EntityEnum(),
+                'offset' => new IntType(),
+                'limit' => new IntType()
+            ],
+            'resolve' => function($source, $args, $resolveInfo) {
+                return DataProvider::getEntityList($source, $args);
+            }
+        ])
+        ->addField('groups', [
+            'type' => new Types\EntityList(),
+            'args' => [
+                'filter' => new Types\GroupFilterEnum(),
+                'offset' => new IntType(),
+                'limit' => new IntType()
+            ],
+            'resolve' => function($source, $args, $resolveInfo) {
+                return DataProvider::getGroupList($source, $args);
+            }
+        ])
+        ->addField('search', [
+            'type' => new Types\EntityList(),
+            'args' => [
+                'q' => new StringType(),
+                'groupGuid' => new IdType(),
+                'entityType' => new Types\EntityEnum(),
+                'offset' => new IntType(),
+                'limit' => new IntType()
+            ],
+            'resolve' => function($source, $args, $resolveInfo) {
+                return DataProvider::getSearchList($source, $args);
+            }
+        ]);
+    }
 }

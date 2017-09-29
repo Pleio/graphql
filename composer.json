@@ -3,7 +3,7 @@
     "description": "A GraphQL interface for Elgg.",
     "type": "elgg-plugin",
     "keywords": ["elgg", "plugin", "graphql"],
-    "license": "GPL-2.0",
+    "license": "EUPL-1.1",
     "support": {
         "source": "https://github.com/Pleio/graphql",
         "issues": "https://github.com/Pleio/graphql/issues"

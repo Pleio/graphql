@@ -9,7 +9,7 @@ class ActivityList extends AbstractObjectType {
     public function build($config) {
         $config->addFields([
             'total' => new IntType(),
-            'edges' => new ListType(new Entity())
+            'edges' => new ListType(new Activity())
         ]);
     }
 }
